@@ -5,3 +5,4 @@ Feature: Adidas Order Placement Functionalities
     Given User is on the home page
     When User adds "Sony vaio i5" from "Laptops"
     And User adds "Dell i7 8gb" from "Laptops"
+    And User navigates to cart and removes "Dell i7 8gb"

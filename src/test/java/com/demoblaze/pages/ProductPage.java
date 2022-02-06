@@ -17,6 +17,15 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//a[.='Add to cart']")
     public WebElement addToCartElement;
 
+    @FindBy(xpath = "//tbody//td[contains(.,'Sony vaio i5')]/../td[4]/a")
+    public WebElement sonyVoioI5Delete;
+
+    public void deleteProduct(String product){
+        String locator = "//tbody//td[contains(.,'"+product+"')]/../td[4]/a";
+        Driver.get().findElement(By.xpath(locator)).click();
+        BrowserUtils.sleep(2);
+    }
+
     public void navigateTo(String product, String category){
         Driver.get().findElement(By.linkText(category)).click();
         Driver.get().findElement(By.linkText(product)).click();
@@ -24,10 +33,10 @@ public class ProductPage extends BasePage{
 
     public void addToCart(){
         addToCartElement.click();
-        BrowserUtils.sleep(2);
-//        WebDriverWait wait = new WebDriverWait(Driver.get(),10);
+        //BrowserUtils.sleep(2);
+        WebDriverWait wait = new WebDriverWait(Driver.get(),10);
+        wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = Driver.get().switchTo().alert();
-//        wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
     }
 }

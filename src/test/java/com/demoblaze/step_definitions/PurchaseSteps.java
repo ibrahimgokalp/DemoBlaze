@@ -3,6 +3,7 @@ package com.demoblaze.step_definitions;
 import com.demoblaze.pages.ProductPage;
 import com.demoblaze.utilities.ConfigurationReader;
 import com.demoblaze.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
@@ -20,5 +21,11 @@ public class PurchaseSteps {
         productPage.navigateTo(product,category);
         productPage.addToCart();
         productPage.home.click();
+    }
+
+    @And("User navigates to cart and removes {string}")
+    public void userNavigatesToCartAndRemoves(String product) {
+        productPage.cart.click();
+        productPage.deleteProduct(product);
     }
 }
