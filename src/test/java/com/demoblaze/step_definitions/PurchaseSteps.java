@@ -8,12 +8,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.sl.In;
 import org.junit.Assert;
 
 public class PurchaseSteps {
 
     ProductPage productPage = new ProductPage();
     PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+    int expectedPurchaseAmount;
 
     @Given("User is on the home page")
     public void user_is_on_the_home_page() {
@@ -36,6 +38,8 @@ public class PurchaseSteps {
     @And("User cliks on place order")
     public void userCliksOnPlaceOrder() {
         productPage.cart.click();
+        expectedPurchaseAmount = Integer.parseInt(productPage.totalPrice.getText());
+
         productPage.placeOrder.click();
     }
 
@@ -54,5 +58,6 @@ public class PurchaseSteps {
         int actualPurchaseAmount = Integer.parseInt(orderDetailsText.split("\n")[1].split(" ")[1]);
         System.out.println("actualPurchaseAmount = " + actualPurchaseAmount);
 
+        Assert.assertEquals("Price is NOT expected", expectedPurchaseAmount,actualPurchaseAmount);
     }
 }
