@@ -5,6 +5,7 @@ import com.demoblaze.utilities.ConfigurationReader;
 import com.demoblaze.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PurchaseSteps {
@@ -27,5 +28,21 @@ public class PurchaseSteps {
     public void userNavigatesToCartAndRemoves(String product) {
         productPage.cart.click();
         productPage.deleteProduct(product);
+    }
+
+    @And("User cliks on place order")
+    public void userCliksOnPlaceOrder() {
+        productPage.cart.click();
+        productPage.placeOrder.click();
+    }
+
+    @And("User fills the form for order and clicks on purchase button")
+    public void userFillsTheFormForOrderAndClicksOnPurchaseButton() {
+
+
+    }
+
+    @Then("order ID and order amount should be as expected")
+    public void orderIDAndOrderAmountShouldBeAsExpected() {
     }
 }

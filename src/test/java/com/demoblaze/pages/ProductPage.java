@@ -39,4 +39,6 @@ public class ProductPage extends BasePage{
         Alert alert = Driver.get().switchTo().alert();
         alert.accept();
     }
+    @FindBy(xpath = "//button[.='Place Order']")
+    public WebElement placeOrder;
 }
