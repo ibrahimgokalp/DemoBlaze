@@ -36,10 +36,7 @@ public class PlaceOrderPage extends BasePage{
         purchase.click();
 
     }
-    @FindBy(xpath="//p[@class='lead text-muted ']/text()[1]")
-    public WebElement orderId;
-
-    @FindBy(xpath="//p[@class='lead text-muted ']/text()[2]")
-    public WebElement actualPurchaseAmount;
+    @FindBy(xpath="//p[@class='lead text-muted ']")
+    public WebElement orderDetails;
 
 }

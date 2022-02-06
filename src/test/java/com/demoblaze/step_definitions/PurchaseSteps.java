@@ -1,5 +1,6 @@
 package com.demoblaze.step_definitions;
 
+import com.demoblaze.pages.PlaceOrderPage;
 import com.demoblaze.pages.ProductPage;
 import com.demoblaze.utilities.ConfigurationReader;
 import com.demoblaze.utilities.Driver;
@@ -7,10 +8,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class PurchaseSteps {
 
     ProductPage productPage = new ProductPage();
+    PlaceOrderPage placeOrderPage = new PlaceOrderPage();
 
     @Given("User is on the home page")
     public void user_is_on_the_home_page() {
@@ -38,11 +41,18 @@ public class PurchaseSteps {
 
     @And("User fills the form for order and clicks on purchase button")
     public void userFillsTheFormForOrderAndClicksOnPurchaseButton() {
-
-
+        placeOrderPage.fillForm();
     }
 
     @Then("order ID and order amount should be as expected")
     public void orderIDAndOrderAmountShouldBeAsExpected() {
+        String orderDetailsText = placeOrderPage.orderDetails.getText();
+
+        String orderId = orderDetailsText.split("\n")[0];
+        System.out.println("orderId = " + orderId);
+
+        int actualPurchaseAmount = Integer.parseInt(orderDetailsText.split("\n")[1].split(" ")[1]);
+        System.out.println("actualPurchaseAmount = " + actualPurchaseAmount);
+
     }
 }
